@@ -12,7 +12,7 @@ def create_run_clis():
     cli_scripts = {}
     for cli_file in CLIS_PATH.glob('**/*.py'):
         cli_name = cli_file.stem
-        class_name = f'Cli{cli_name.title()}'
+        class_name = 'Cli' + ''.join([word.title() for word in cli_name.split('_')])
         cli_scripts[cli_name] = {'class_name': class_name, 'file_name': f'.{cli_name}'}
 
     # load Classes
