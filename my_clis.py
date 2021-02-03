@@ -3,25 +3,24 @@ import argparse
 from pathlib import Path
 
 
-CLIS_FOLDER = 'clis'
-CLIS_PATH = Path(__file__).parent / CLIS_FOLDER
+CLIS_PACKAGE = 'src.clis'
+CLIS_PATH = Path(__file__).parent / CLIS_PACKAGE.replace('.', '/')
 
 
 def create_run_clis():
     # load CLI scripts
     cli_scripts = {}
-    for cli_file in CLIS_PATH.glob('**/cli_*.py'):
-        cli_name = '_'.join(cli_file.stem.split('_')[1:])
-        class_name = ''.join([word.title() for word in cli_file.stem.split('_')])
-        file_name = f'.{cli_file.stem}'
-        cli_scripts[cli_name] = {'class_name': class_name, 'file_name': file_name}
+    for cli_file in CLIS_PATH.glob('**/*.py'):
+        cli_name = cli_file.stem
+        class_name = f'Cli{cli_name.title()}'
+        cli_scripts[cli_name] = {'class_name': class_name, 'file_name': f'.{cli_name}'}
 
     # load Classes
     classes = {}
     for cli in cli_scripts.keys():
         class_to_import = getattr(importlib.import_module(
             cli_scripts[cli]['file_name'],
-            package=CLIS_FOLDER),
+            package=CLIS_PACKAGE),
             cli_scripts[cli]['class_name'])
         classes[cli] = class_to_import()
 

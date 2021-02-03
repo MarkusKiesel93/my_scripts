@@ -1,4 +1,6 @@
 # Base CLI class to define functions every CLI needs to implement
+# Naming convention for all CLIs has to hold
+# Name class with "Cli" and first letter upper case of module name
 
 
 class CliBase:
