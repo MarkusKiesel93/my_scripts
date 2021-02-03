@@ -1,0 +1,8 @@
+# database home where all folders live
+# has to be in $HOME directory
+db_home: Shared/database
+
+# relative path from db_home to files for the specific data files
+debt: tracker/finances/debt.csv
+expenses: tracker/finances/expenses.csv
+keepass: authentification/kiesel_markus_pw.kdbx
