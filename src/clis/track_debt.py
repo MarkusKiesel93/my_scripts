@@ -14,6 +14,8 @@ class CliTrackDebt(CliBase):
             debt_tracker.info()
         elif args.list:
             debt_tracker.list(args.list[0])
+        elif args.periodic_debt:
+            debt_tracker.periodic_debt()
         else:
             debt_tracker.info()
 
@@ -21,3 +23,4 @@ class CliTrackDebt(CliBase):
         sub_parser.add_argument('-a', '--add', action='store_true', help='add a new debt or payback to the database')
         sub_parser.add_argument('-i', '--info', action='store_true', help='list the dept for all persons')
         sub_parser.add_argument('-ls', '--list', nargs=1, metavar='person', help='list all the depts for one person')
+        sub_parser.add_argument('-pd', '--periodic_debt', action='store_true', help='add periodic debt from config file')
