@@ -1,5 +1,6 @@
-db_path_loader
-    rewrite so to not use a get() function but a decorator
-
-config_loader
-    rewrite so to not use a get() function but a decorator
+dept_tracker
+    add periodic debt
+expense tracker
+    add periodic expense
+my_clis
+    add list argument to list all CLIs with description
