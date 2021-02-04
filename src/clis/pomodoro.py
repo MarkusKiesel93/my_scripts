@@ -11,7 +11,6 @@ class CliPomodoro(CliBase):
         short_break = Timer(args.short_break, output='SHORT BREAK')
         long_break = Timer(args.long_break, output='LONG BREAK')
 
-        # run pomodoro
         while True:
             pomodoro.start()
             short_break.start()
