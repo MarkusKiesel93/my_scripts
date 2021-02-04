@@ -15,7 +15,7 @@ class CliTrackExpense(CliBase):
         elif args.donate:
             expense_tracker.donate()
         else:
-            print('select one option')
+            expense_tracker.list()
 
     def create_parser(self, sub_parser):
         sub_parser.add_argument(
