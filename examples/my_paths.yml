@@ -1,0 +1,8 @@
+# files home where all folders and files live
+# has to be in $HOME directory
+home: my_scripts/examples
+
+# relative path from home to files for the specific files
+debt: debt.csv
+periodic_debt: periodic_debt.yml
+expenses: expenses.csv

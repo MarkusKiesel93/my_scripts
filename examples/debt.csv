@@ -1,0 +1,5 @@
+person,amount,purpose,date
+Lisa,10.0,Burger,2020-01-01
+Lotte,-11.0,Wein,2020-10-01
+Max,30.0,Ticket,2020-12-03
+Max,-15.0,Mittageseene,2020-12-12
