@@ -3,11 +3,15 @@ from pathlib import Path
 
 
 CONFIG_PATH = Path(__file__).parent.parent / 'configs'
+EXAMPLE_PATH = Path(__file__).parent.parent / 'examples'
 
 
 class ConfigLoader:
     def __init__(self, private_path=None):
         self.private_path = private_path
+        self.config_path = CONFIG_PATH
+        if self.get('general')['use_examples']:
+            self.config_path = EXAMPLE_PATH
 
     def get(self, config_name):
         """
@@ -26,7 +30,7 @@ class ConfigLoader:
 
     def _create_path(self, config_name):
         file_name = ''.join([config_name, '.yml'])
-        file_path = (CONFIG_PATH / file_name).resolve()
+        file_path = (self.config_path / file_name).resolve()
         if not file_path.exists():
             raise OSError(f'config file not found:\n {file_path}')
         return file_path.as_posix()
