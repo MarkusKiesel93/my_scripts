@@ -1,7 +1,7 @@
 from time import sleep
 from datetime import datetime, timedelta
 from playsound import playsound
-from pathlib import Path
+from src.path_loader import PathLoader
 
 
 class Timer:
@@ -14,8 +14,7 @@ class Timer:
         self.min = min
         self.sec = sec
         self.output = output
-        # TODO: get alarm path from config file
-        self.alarm_mp3 = (Path(__file__).parent.parent / 'configs' / 'timer_alarm.mp3').resolve().as_posix()
+        self.sound = PathLoader(internal=True).get('timer_sound').as_posix()
 
     def start(self):
         """
@@ -26,7 +25,7 @@ class Timer:
         self._user_info()
         sleep(time_sleep)
         print(f'FINISHED {self.output}')
-        playsound(self.alarm_mp3)
+        playsound(self.sound)
 
     def _user_info(self):
         """

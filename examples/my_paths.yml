@@ -1,6 +1,10 @@
-# files home where all folders and files live
+# internal file paths relative from repository root
+timer_sound: configs/gong.mp3
+
+# files home where all external files live
 # has to be in $HOME directory
-home: my_scripts/examples
+# example files are "internal"
+external: my_scripts/examples
 
 # relative path from home to files for the specific files
 debt: debt.csv
