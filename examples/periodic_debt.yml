@@ -1,0 +1,17 @@
+# Example of periodic debt to be added to the debt tracker at a specific period
+# only montly period supported
+
+Electicity:
+  due_day: 15
+  period: monthly
+  per_person:
+    Otto: 20
+    Max: 20
+
+Netflix:
+  due_day: 1
+  period: monthly
+  per_person:
+    Lisa: 5
+    Lotte: 5
+    Laura: 5
