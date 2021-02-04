@@ -1,11 +1,11 @@
 import pandas as pd
-from src.db_path_loader import DbPathLoader
+from src.path_loader import PathLoader
 from src.cli_inquirer import ask_date, ask_string, ask_float, ask_choices
 
 
 class ExpenseTracker:
     def __init__(self):
-        self.db_path = DbPathLoader().get('expenses')
+        self.db_path = PathLoader().get('expenses')
         self.db = pd.read_csv(self.db_path)
 
     def add(self):

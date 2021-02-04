@@ -1,0 +1,9 @@
+# files home where all folders and files live
+# has to be in $HOME directory
+home: Shared/database
+
+# relative path from home to files for the specific files
+debt: tracker/finances/debt.csv
+periodic_debt: tracker/finances/periodic_debt.yml
+expenses: tracker/finances/expenses.csv
+keepass: authentification/kiesel_markus_pw.kdbx

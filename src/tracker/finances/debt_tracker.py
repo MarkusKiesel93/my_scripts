@@ -1,12 +1,12 @@
 import pandas as pd
 import datetime
 
-from src.db_path_loader import DbPathLoader
+from src.path_loader import PathLoader
 from src.cli_inquirer import ask_date, ask_string, ask_float
 
 class DebtTracker():
     def __init__(self):
-        self.db_path = DbPathLoader().get('debt')
+        self.db_path = PathLoader().get('debt')
         self.db = pd.read_csv(self.db_path)
 
     def add(self):

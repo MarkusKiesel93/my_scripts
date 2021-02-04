@@ -6,11 +6,17 @@ CONFIG_PATH = Path(__file__).parent.parent / 'configs'
 
 
 class ConfigLoader:
+    def __init__(self, private_path=None):
+        self.private_path = private_path
+
     def get(self, config_name):
         """
         returns the specifyed config as dictionary
         """
-        config_file_path = self._create_path(config_name)
+        if not self.private_path:
+            config_file_path = self._create_path(config_name)
+        else:
+            config_file_path = self.private_path
         return self._load_config(config_file_path)
 
     def _load_config(self, config_file_path):
@@ -22,5 +28,5 @@ class ConfigLoader:
         file_name = ''.join([config_name, '.yml'])
         file_path = (CONFIG_PATH / file_name).resolve()
         if not file_path.exists():
-            raise Exception(f'no config file with name: {config_name}')
+            raise OSError(f'config file not found:\n {file_path}')
         return file_path.as_posix()
