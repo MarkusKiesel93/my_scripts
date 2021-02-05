@@ -10,6 +10,12 @@ PATH_CONFIG_FILE = 'my_paths'
 
 
 def load_config(config_name, external=False):
+    """
+    returns the specifyed config as dictionary
+    config has to be a yaml file with suffix ".yml"
+    external: if config located outside the dedicated configs folder
+        if external the path has to be specifyed in configs/my_paths.yml
+    """
     config_folder_path = CONFIG_PATH
     if external and PRODUCTION:
         config_folder_path = load_path(config_name)
@@ -25,6 +31,11 @@ def load_config(config_name, external=False):
 
 
 def load_path(name):
+    """
+    handles paths to external files
+    name and path need to be specifyed in configs/my_paths.yml
+    paths have to be relative from home and names must be unique
+    """
     if PRODUCTION:
         configs = load_config(PATH_CONFIG_FILE)
         try:
