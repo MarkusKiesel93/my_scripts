@@ -1,6 +1,11 @@
 dept_tracker
-    add periodic debt
+    add sheduler which handles periodic calling the periodic debt
 expense tracker
     add periodic expense
 my_clis
     add list argument to list all CLIs with description
+config_loader
+    decide from outside if PRODUCTION or not 
+    maby needed for other modules
+tests
+    write tests for CLIs
