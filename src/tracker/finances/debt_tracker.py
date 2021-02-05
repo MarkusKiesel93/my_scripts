@@ -1,13 +1,12 @@
 import pandas as pd
 from datetime import datetime, date
-from src.path_loader import PathLoader
-from src.config_loader import ConfigLoader
+from src.config_loader import load_config, load_path
 from src.cli_inquirer import ask_date, ask_string, ask_float
 
 class DebtTracker():
     def __init__(self):
         self.new_debt = {'person':'','amount':'','purpose':'','date':''}
-        self.db_path = PathLoader().get('debt')
+        self.db_path = load_path('debt')
         self.db = pd.read_csv(self.db_path)
 
     def add(self):
@@ -47,7 +46,7 @@ class DebtTracker():
         adds a periodic debt from the config file to the dataset
         only monthly periods are supported currently
         """
-        p_debt = ConfigLoader().get('periodic_debt')
+        p_debt = load_config('periodic_debt')
         this_month = datetime.today().month
         this_year = datetime.today().year
         for purpose in p_debt:

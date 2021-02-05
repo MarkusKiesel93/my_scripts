@@ -1,7 +1,9 @@
 from time import sleep
 from datetime import datetime, timedelta
 from playsound import playsound
-from src.path_loader import PathLoader
+from pathlib import Path
+
+SOUND = (Path().parent.parent / 'configs' / 'gong.mp3').resolve().as_posix()
 
 
 class Timer:
@@ -10,11 +12,9 @@ class Timer:
     activates an alarm
     """
     def __init__(self, min, sec=0, output='TIMER'):
-        # set arguments
         self.min = min
         self.sec = sec
         self.output = output
-        self.sound = PathLoader(internal=True).get('timer_sound').as_posix()
 
     def start(self):
         """
@@ -25,7 +25,7 @@ class Timer:
         self._user_info()
         sleep(time_sleep)
         print(f'FINISHED {self.output}')
-        playsound(self.sound)
+        playsound(SOUND)
 
     def _user_info(self):
         """

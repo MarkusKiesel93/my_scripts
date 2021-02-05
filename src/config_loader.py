@@ -1,36 +1,40 @@
 import yaml
 from pathlib import Path
 
+PRODUCTION = True
 
-CONFIG_PATH = Path(__file__).parent.parent / 'configs'
-EXAMPLE_PATH = Path(__file__).parent.parent / 'examples'
+REPOSITORY_PATH = Path(__file__).parent.parent
+CONFIG_PATH = REPOSITORY_PATH / 'configs'
+EXAMPLE_PATH = REPOSITORY_PATH / 'examples'
+PATH_CONFIG_FILE = 'my_paths'
 
 
-class ConfigLoader:
-    def __init__(self, private_path=None):
-        self.private_path = private_path
-        self.config_path = CONFIG_PATH
-        if self.get('general')['use_examples']:
-            self.config_path = EXAMPLE_PATH
+def load_config(config_name, external=False):
+    config_folder_path = CONFIG_PATH
+    if external and PRODUCTION:
+        config_folder_path = load_path(config_name)
+    if not PRODUCTION:
+        config_folder_path = EXAMPLE_PATH
+    config_file_path = (config_folder_path / config_name).with_suffix('.yml').resolve()
+    if not config_file_path.exists():
+        raise OSError(f'file not found:\n{config_file_path}')
 
-    def get(self, config_name):
-        """
-        returns the specifyed config as dictionary
-        """
-        if not self.private_path:
-            config_file_path = self._create_path(config_name)
-        else:
-            config_file_path = self.private_path
-        return self._load_config(config_file_path)
+    with open(config_file_path, 'r') as cfg_file:
+        cfg = yaml.safe_load(cfg_file)
+    return cfg
 
-    def _load_config(self, config_file_path):
-        with open(config_file_path, 'r') as cfg_file:
-            cfg = yaml.safe_load(cfg_file)
-        return cfg
 
-    def _create_path(self, config_name):
-        file_name = ''.join([config_name, '.yml'])
-        file_path = (self.config_path / file_name).resolve()
-        if not file_path.exists():
-            raise OSError(f'config file not found:\n {file_path}')
-        return file_path.as_posix()
+def load_path(name):
+    if PRODUCTION:
+        configs = load_config(PATH_CONFIG_FILE)
+        try:
+            relative_file_path = configs[name]
+        except Exception:
+            raise KeyError(f'no setting for "{name}" in configs/{PATH_CONFIG_FILE}.yml')
+        file_path = Path().home() / relative_file_path   
+    else:
+        files_in_path = EXAMPLE_PATH.glob(f'**/{name}*')
+        file_path = list(files_in_path)[0]      
+    if not file_path.exists():
+        raise OSError(f'file not found:\n{file_path}')
+    return file_path

@@ -1,13 +1,6 @@
-# internal file paths relative from repository root
-timer_sound: configs/gong.mp3
-
-# files home where all external files live
-# has to be in $HOME directory
-external: Shared/database
-
-# relative path from home to files for the specific files
-debt: tracker/finances/debt.csv
-periodic_debt: tracker/finances/periodic_debt.yml
-expenses: tracker/finances/expenses.csv
-keepass: authentification/kiesel_markus_pw.kdbx
+# external file paths relative from $HOME
+debt: Shared/database/tracker/finances/debt.csv
+periodic_debt: Shared/database/tracker/finances/periodic_debt.yml
+expenses: Shared/database/tracker/finances/expenses.csv
+keepass: Shared/database/authentification/kiesel_markus_pw.kdbx
 
