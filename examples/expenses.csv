@@ -1,5 +1,5 @@
-date,item,category,sub_category,place,amount
-2021-02-03,Lebensmittel,Nahrung,Lebensmittel,Billa,55.55
-2021-02-03,Lebensmittel,Nahrung,Lebensmittel,Spar,20.75
-2021-02-03,Schokolade,Nahrung,Süßigkeiten,Schoko Heaven,8.99
-2021-02-03,Zahnpasta,Zähne,,DM,4.95
+date,item,category,amount
+2021-02-03,Lebensmittel,Lebensmittel,55.55
+2021-02-03,Lebensmittel,Lebensmittel,20.75
+2021-02-03,Schokolade,Süßigkeiten,8.99
+2021-02-03,Zahnpasta,Zähne,4.95
