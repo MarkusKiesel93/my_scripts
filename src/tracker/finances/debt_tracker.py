@@ -3,6 +3,7 @@ from datetime import datetime, date
 from src.config_loader import load_config, load_path
 from src.cli_inquirer import ask_date, ask_string, ask_float
 
+
 class DebtTracker():
     def __init__(self):
         self.new_debt = {'person':'','amount':'','purpose':'','date':''}
@@ -11,7 +12,7 @@ class DebtTracker():
 
     def add(self):
         """
-        add a debt to the dataset
+        add a debt to the data file
         inquires information from user
         """
         self.new_debt['date'] = ask_date()
@@ -19,7 +20,7 @@ class DebtTracker():
         self.new_debt['amount'] = ask_float('amount')
         self.new_debt['purpose'] = ask_string('purpose')
         self.db = self.db.append(self.new_debt, ignore_index=True)
-        self.__save_db()
+        self._save_db()
 
     def info(self, person = None):
         """
@@ -41,9 +42,16 @@ class DebtTracker():
         pd.set_option('display.max_rows', None)
         print(self.db[self.db.person == person])
 
+    def delete_last(self, n=1):
+        """
+        delete the last n rows from the data file
+        """
+        self.db.drop(self.db.tail(n).index, inplace=True)
+        self._save_db()
+
     def periodic_debt(self):
         """
-        adds a periodic debt from the config file to the dataset
+        adds a periodic debt from the config file to the data file
         only monthly periods are supported currently
         """
         p_debt = load_config('periodic_debt')
@@ -58,14 +66,10 @@ class DebtTracker():
                     self.new_debt['amount'] = amount
                     self.new_debt['purpose'] = debt_purpose
                     self.db = self.db.append(self.new_debt, ignore_index=True)
-        self.__save_db()
+        self._save_db()
 
-
-    def __save_db(self):
+    def _save_db(self):
         self.db.to_csv(path_or_buf=self.db_path, index=False)
-        self.__info_after_save()
-
-    def __info_after_save(self):
-        print('\nSUCCESSFULLY ADDED DEBT TO DB\n')
         print(self.db.tail(10))
         self.info()
+        print('successfully saved data')
