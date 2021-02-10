@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime, date
 from src.config_loader import load_config, load_path
-from src.cli_inquirer import ask_date, ask_string, ask_float
+from src.cli_inquirer import ask_date, ask_string, ask_float, ask_choices
 
 
 class DebtTracker():
@@ -16,7 +16,11 @@ class DebtTracker():
         inquires information from user
         """
         self.new_debt['date'] = ask_date()
-        self.new_debt['person'] = ask_string('person')
+        persons = self.db.person.unique().tolist()
+        if len(persons) > 0:
+            self.new_debt['person'] = ask_choices('person', persons, 'person', ask_new=True)
+        else:
+            self.new_debt['person'] = ask_string('new category')
         self.new_debt['amount'] = ask_float('amount')
         self.new_debt['purpose'] = ask_string('purpose')
         self.db = self.db.append(self.new_debt, ignore_index=True)
