@@ -12,8 +12,8 @@ class CliTrackExpense(CliBase):
             expense_tracker.list(args.list)
         elif args.add:
             expense_tracker.add()
-        elif args.donate:
-            expense_tracker.donate()
+        elif args.delete_last:
+            expense_tracker.delete_last(args.delete_last)
         else:
             expense_tracker.list()
 
@@ -21,6 +21,6 @@ class CliTrackExpense(CliBase):
         sub_parser.add_argument(
             '-a', '--add', action='store_true', help='add a new expense to the database')
         sub_parser.add_argument(
-            '-ls', '--list', type=int, nargs='?', const=10, metavar='x', help='list the last x rows')
+            '-ls', '--list', type=int, nargs='?', const=10, metavar='n', help='list the last n rows (default: 10)')
         sub_parser.add_argument(
-            '-d', '--donate', action='store_true', help='add a donation to the expense database')
+            '-dl', '--delete_last', type=int, nargs='?', const=1, metavar='n', help='delete last n rows (default: 1)')
