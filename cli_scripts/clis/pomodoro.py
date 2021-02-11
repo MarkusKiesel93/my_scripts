@@ -1,5 +1,5 @@
-from src.base_cli import CliBase
-from src.utilitys.timer import Timer
+from cli_scripts.base_cli import CliBase
+from cli_scripts.utilitys.timer import Timer
 
 
 class CliPomodoro(CliBase):

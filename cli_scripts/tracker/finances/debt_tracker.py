@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime, date
-from src.config_loader import load_config, load_path
-from src.cli_inquirer import ask_date, ask_string, ask_float, ask_choices
+from cli_scripts.config_loader import load_config, load_path
+from cli_scripts.cli_inquirer import ask_date, ask_string, ask_float, ask_choices
 
 
 class DebtTracker():

@@ -1,5 +1,5 @@
-from src.base_cli import CliBase
-from src.tracker.finances.expense_tracker import ExpenseTracker
+from cli_scripts.base_cli import CliBase
+from cli_scripts.tracker.finances.expense_tracker import ExpenseTracker
 
 
 class CliTrackExpense(CliBase):

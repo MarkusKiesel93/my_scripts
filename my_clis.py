@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 
 
-CLIS_PACKAGE = 'src.clis'
+CLIS_PACKAGE = 'cli_scripts.clis'
 CLIS_PATH = Path(__file__).parent / CLIS_PACKAGE.replace('.', '/')
 
 

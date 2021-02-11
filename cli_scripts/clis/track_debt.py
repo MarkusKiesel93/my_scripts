@@ -1,5 +1,5 @@
-from src.base_cli import CliBase
-from src.tracker.finances.debt_tracker import DebtTracker
+from cli_scripts.base_cli import CliBase
+from cli_scripts.tracker.finances.debt_tracker import DebtTracker
 
 
 class CliTrackDebt(CliBase):
