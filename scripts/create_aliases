@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import yaml
+
+ALIASES_FILE = Path().home() / '.bash_aliases'
+CONFIG_FILE = Path().home() / 'Shared/database/configs/my_aliases.yml'
+MAIN_PATH = (Path(__file__).parent.parent / 'main').resolve()
+CLIS_PATH = Path(__file__).parent.parent / 'cli_scripts' / 'clis'
+
+aliases_list = []
+
+# load config file
+with open(CONFIG_FILE, 'r') as cfg_file:
+    config_dict = yaml.safe_load(cfg_file)
+
+# create direct aliases
+for alias in config_dict:
+    command = config_dict[alias]
+    aliases_list.append(f'alias {alias}="{command}"')
+
+# create aliases for clis in this repository
+for cli_file in CLIS_PATH.glob('**/*.py'):
+    cli_name = cli_file.stem
+    aliases_list.append(f'alias {cli_name}="{MAIN_PATH} {cli_name}"')
+
+# write aliases to file
+print('write aliases:\n')
+with open(ALIASES_FILE, 'w') as aliases_file:
+    for alias in aliases_list:
+        aliases_file.write(alias + '\n')
+        print(alias)
+
+print(f'\ncreated file: {ALIASES_FILE}')
+print('to make them usable immediately:')
+print(f'source {Path().home() / ".bashrc"}')

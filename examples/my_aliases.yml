@@ -1,0 +1,7 @@
+# directly define aliases
+hello_world: echo "HELLO WORLD"
+update: sudo apt update && sudo apt upgrade -y
+ll: ls -l
+la: ls -la
+lr: ls -lR
+lar: ls -laR
