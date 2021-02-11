@@ -1,5 +1,5 @@
 from cli_scripts.base_cli import CliBase
-from cli_scripts.utilitys.timer import Timer
+from cli_scripts.timer import Timer
 
 
 class CliTimer(CliBase):
