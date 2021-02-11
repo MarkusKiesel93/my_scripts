@@ -1,5 +1,5 @@
 import pandas as pd
-from cli_scripts.config_loader import load_path
+from configs.config_loader import load_path
 from cli_scripts.cli_inquirer import ask_date, ask_string, ask_float, ask_choices
 
 
