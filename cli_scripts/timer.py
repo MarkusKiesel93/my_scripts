@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from playsound import playsound
 from pathlib import Path
 
-SOUND = (Path().parent.parent / 'configs' / 'gong.mp3').resolve().as_posix()
+SOUND = (Path(__file__).parent.parent / 'configs' / 'gong.mp3').resolve().as_posix()
 
 
 class Timer:
@@ -25,6 +25,7 @@ class Timer:
         self._user_info()
         sleep(time_sleep)
         print(f'FINISHED {self.output}')
+        print(SOUND)
         playsound(SOUND)
 
     def _user_info(self):
