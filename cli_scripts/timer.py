@@ -25,7 +25,6 @@ class Timer:
         self._user_info()
         sleep(time_sleep)
         print(f'FINISHED {self.output}')
-        print(SOUND)
         playsound(SOUND)
 
     def _user_info(self):
