@@ -15,7 +15,7 @@ class DebtTracker():
         add a debt to the data file
         inquires information from user
         """
-        self.new_debt['date'] = ask_date()
+        self.new_debt['date'] = ask_date().strftime('%Y-%m-%d')
         persons = self.db.person.unique().tolist()
         if len(persons) > 0:
             self.new_debt['person'] = ask_choices('person', persons, 'person', ask_new=True)
@@ -23,7 +23,7 @@ class DebtTracker():
             self.new_debt['person'] = ask_string('new category')
         self.new_debt['amount'] = ask_float('amount')
         self.new_debt['purpose'] = ask_string('purpose')
-        self.db = self.db.append(self.new_debt, ignore_index=True)
+        self.db.loc[len(self.db)] = self.new_debt
         self._save_db()
 
     def info(self, person = None):
