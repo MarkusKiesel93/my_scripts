@@ -64,12 +64,15 @@ def ask_choices(name, choices, message, ask_new=False):
     if ask_new is True the user can select adding a new option
     returns user choice as String
     """
+    answer = None
     if len(choices) < 1:
         raise Exception('at least one choice has to be given')
     if ask_new:
-        choices += ['new']
+        choices.insert(0, 'new')
     questions = [inquirer.List(name, message=message, choices=choices)]
-    answer = inquirer.prompt(questions)[name]
+    ask_question = inquirer.prompt(questions)
+    if ask_question and name in ask_question:
+        answer = ask_question[name]
     if ask_new and answer == 'new':
         answer = ask_string(name)
     return answer
