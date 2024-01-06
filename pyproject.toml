@@ -1,0 +1,21 @@
+[project]
+name = "my_scripts"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Markus Kiesel", email = "markus.kiesel@tuta.io"},
+]
+dependencies = [
+    "pandas>=2.1.4",
+    "inquirer>=3.2.0",
+    "curtsies>=0.4.2",
+    "pyyaml>=6.0.1",
+    "pydub>=0.25.1",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+package-type = "application"

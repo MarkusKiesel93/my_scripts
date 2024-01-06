@@ -1,10 +1,11 @@
 from time import sleep
 from datetime import datetime, timedelta
-from playsound import playsound
+from pydub import AudioSegment
+from pydub.playback import play
 from pathlib import Path
 
-SOUND = (Path(__file__).parent.parent / 'configs' / 'gong.mp3').resolve().as_posix()
-
+SOUND_PATH = (Path(__file__).parent.parent / 'configs' / 'gong.mp3').resolve().as_posix()
+SOUND = AudioSegment.from_mp3(SOUND_PATH)
 
 class Timer:
     """
@@ -25,7 +26,7 @@ class Timer:
         self._user_info()
         sleep(time_sleep)
         print(f'FINISHED {self.output}')
-        playsound(SOUND)
+        play(SOUND)
 
     def _user_info(self):
         """

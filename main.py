@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from my_clis import create_run_clis
 
 try:
